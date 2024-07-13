@@ -1,5 +1,5 @@
 """
-ASGI config for skymarket project.
+ASGI config for sb1 project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
