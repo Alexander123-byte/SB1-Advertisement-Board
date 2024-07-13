@@ -177,6 +177,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "django_media")
 # CORS
 CORS_ALLOW_ALL_ORIGINS = True
 
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:3000',
+    ]
+
+CORS_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:3000',
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -186,9 +196,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Include Email Backend
 # TODO эти переменные мы добавили чтобы помочь Вам настроить почтовый ящик на django.
 # TODO теперь Вам необходимо создать файл .env на основе .env.example
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_USE_TLS = True
-EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.gmail.com")
-EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = os.environ.get("EMAIL_PORT")
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'san.juckov2017@yandex.ru'
+EMAIL_HOST_PASSWORD = 'rewty_76'
