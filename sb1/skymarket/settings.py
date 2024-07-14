@@ -17,6 +17,12 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
+
+
+def get_bool(value):
+    return value.lower() in ('true', '1', 't', 'y', 'yes')
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -201,9 +207,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # TODO теперь Вам необходимо создать файл .env на основе .env.example
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
 EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_PORT = os.getenv('EMAIL_PORT')
-EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT'))
+EMAIL_USE_SSL = get_bool(os.getenv('EMAIL_USE_SSL'))
+EMAIL_USE_TLS = get_bool(os.getenv('EMAIL_USE_TLS'))
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')  # Пароль приложения
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
