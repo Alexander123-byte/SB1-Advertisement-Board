@@ -13,7 +13,18 @@ schema_view = get_schema_view(
     openapi.Info(
         title="Skymarket API",
         default_version='v1',
-        description="API description",
+        description="""
+        Доска объявлений
+
+        Бэкенд-часть проекта предполагает реализацию следующего функционала:
+
+        - Авторизация и аутентификация пользователей.
+        - Распределение ролей между пользователями (пользователь и админ).
+        - Восстановление пароля через электронную почту.
+        - CRUD для объявлений на сайте (админ может удалять или редактировать все объявления, а пользователи только свои).
+        - Под каждым объявлением пользователи могут оставлять отзывы.
+        - В заголовке сайта можно осуществлять поиск объявлений по названию.
+        """,
         terms_of_service="https://www.example.com/policies/terms/",
         contact=openapi.Contact(email="contact@example.com"),
         license=openapi.License(name="BSD License"),
