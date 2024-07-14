@@ -8,6 +8,9 @@ from users.models import User
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
+    """
+    Регистрация модели User в админке, а также настройка отображения и редактирования полей.
+    """
     list_display = ('id', 'first_name', 'last_name', 'email', 'phone', 'role',)
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)

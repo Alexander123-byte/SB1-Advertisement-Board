@@ -6,7 +6,12 @@ from django.contrib.auth.models import (
 
 
 class UserManager(BaseUserManager):
+    """
+    Менеджер для модели пользователя.
+    """
     def create_user(self, email, first_name, last_name, phone, password=None):
+        """Создает и сохраняет пользователя с указанным адресом электронной почты, именем,
+        фамилией, телефоном и паролем."""
         if not email:
             raise ValueError('Поле "Электронная почта" не может быть пустым!')
         user = self.model(
@@ -23,6 +28,8 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, first_name, last_name, phone, password=None):
+        """Создает и сохраняет суперпользователя с указанным адресом электронной почты, именем,
+        фамилией, телефоном и паролем."""
         
         user = self.create_user(
             email,
