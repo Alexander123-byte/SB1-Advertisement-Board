@@ -38,6 +38,7 @@ urlpatterns = [
     path("api/redoc-tasks/", include("redoc.urls")),
 
     path('api/', include('users.urls')),
+    path('api/', include('ads.urls')),
 
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

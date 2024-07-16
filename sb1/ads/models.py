@@ -23,8 +23,8 @@ class Ad(models.Model):
     """
     image = models.ImageField(upload_to='images/', verbose_name="Фото", help_text="Разместите фото для объявления",
                               blank=True, null=True)
-    title = models.CharField(max_length=200, verbose_name="Название товара", help_text="Укажите название товара"),
-    price = models.PositiveIntegerField(verbose_name="Цена товара", help_text="Укажите цену товара"),
+    title = models.CharField(max_length=200, verbose_name="Название товара", help_text="Укажите название товара")
+    price = models.PositiveIntegerField(verbose_name="Цена товара", help_text="Укажите цену товара")
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Автор объявления",
                                help_text="Выберите автора объявления", on_delete=models.CASCADE, related_name="ads",
                                default=None)
