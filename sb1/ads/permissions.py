@@ -6,6 +6,14 @@ from users.models import UserRoles
 
 
 class IsAdmin(BasePermission):
+    """
+    Класс премишенов для проверки, является ли пользователь администратором.
+
+    Методы:
+        - has_permission(self, request, view): Проверяет, аутентифицирован ли пользователь.
+        - has_object_permission(self, request, view, obj): Проверяет, является ли пользователь администратором.
+
+    """
     def has_permission(self, request, view):
         return request.user and request.user.is_authenticated
 
@@ -14,6 +22,13 @@ class IsAdmin(BasePermission):
 
 
 class IsOwner(BasePermission):
+    """
+    Класс премишенов для проверки, является ли пользователь владельцем объекта.
+
+    Методы:
+        - has_permission(self, request, view): Проверяет, аутентифицирован ли пользователь.
+        - has_object_permission(self, request, view, obj): Проверяет, является ли пользователь владельцем объекта.
+    """
     def has_permission(self, request, view):
         return request.user and request.user.is_authenticated
 

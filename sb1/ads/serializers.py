@@ -7,6 +7,16 @@ from ads.models import Comment, Ad
 # TODO Сериалайзеры. Предлагаем Вам такую структуру, однако вы вправе использовать свою
 
 class CommentSerializer(serializers.ModelSerializer):
+    """
+    Сериалайзер для модели Comment.
+
+    Поля:
+        - author_id (ReadOnlyField): ID автора комментария.
+        - ad_id (ReadOnlyField): ID объявления, к которому относится комментарий.
+        - author_first_name (ReadOnlyField): Имя автора комментария.
+        - author_last_name (ReadOnlyField): Фамилия автора комментария.
+        - author_image (ImageField): Изображение автора комментария.
+    """
     author_id = serializers.ReadOnlyField(source="author.id")
     ad_id = serializers.ReadOnlyField(source="ad.id")
     author_first_name = serializers.ReadOnlyField(source="author.first_name")
@@ -20,6 +30,16 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class AdSerializer(serializers.ModelSerializer):
+    """
+    Сериалайзер для модели Ad.
+
+    Поля:
+        - pk (IntegerField): Первичный ключ объявления.
+        - image (ImageField): Изображение объявления.
+        - title (CharField): Название товара.
+        - price (PositiveIntegerField): Цена товара.
+        - description (CharField): Описание товара.
+    """
     # TODO сериалайзер для модели
     class Meta:
         model = Ad
@@ -27,6 +47,15 @@ class AdSerializer(serializers.ModelSerializer):
 
 
 class AdDetailSerializer(serializers.ModelSerializer):
+    """
+    Детализированный сериалайзер для модели Ad.
+
+    Поля:
+        - author_first_name (ReadOnlyField): Имя автора объявления.
+        - author_last_name (ReadOnlyField): Фамилия автора объявления.
+        - phone (PhoneNumberField): Телефонный номер автора объявления.
+        - author_id (ReadOnlyField): ID автора объявления.
+    """
     # TODO сериалайзер для модели
     author_first_name = serializers.ReadOnlyField(source="author.first_name")
     author_last_name = serializers.ReadOnlyField(source="author.last_name")
