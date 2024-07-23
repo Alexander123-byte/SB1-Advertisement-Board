@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import pagination, viewsets
+from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from ads.models import Ad, Comment

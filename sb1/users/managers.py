@@ -30,7 +30,6 @@ class UserManager(BaseUserManager):
     def create_superuser(self, email, first_name, last_name, phone, password=None):
         """Создает и сохраняет суперпользователя с указанным адресом электронной почты, именем,
         фамилией, телефоном и паролем."""
-        
         user = self.create_user(
             email,
             first_name=first_name,
