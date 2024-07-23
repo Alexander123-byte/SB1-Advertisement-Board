@@ -13,12 +13,56 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     restart: always
     healthcheck:
-      test: pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 30s
       timeout: 10s
       retries: 15
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - "5432:5432"
+
+  ads:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./sb1:/app
+    depends_on:
+      - db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      EMAIL_PORT: ${EMAIL_PORT}
+      EMAIL_USE_SSL: ${EMAIL_USE_SSL}
+      EMAIL_USE_TLS: ${EMAIL_USE_TLS}
+      SECRET_KEY: ${SECRET_KEY}
+      APP_PORT: 8001
+    ports:
+      - "8001:8001"
+
+  users:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./sb1:/app
+    depends_on:
+      - db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      EMAIL_PORT: ${EMAIL_PORT}
+      EMAIL_USE_SSL: ${EMAIL_USE_SSL}
+      EMAIL_USE_TLS: ${EMAIL_USE_TLS}
+      SECRET_KEY: ${SECRET_KEY}
+      APP_PORT: 8002
+    ports:
+      - "8002:8002"
 
   frontend:
     build: ./frontend_react/
@@ -37,6 +81,8 @@ services:
     restart: always
     depends_on:
       - frontend
+      - ads
+      - users
 
 volumes:
   postgres_data:
